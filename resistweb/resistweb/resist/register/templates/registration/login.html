@@ -1,0 +1,27 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/loginCSS.css' %}">
+
+<div id="wrapper">
+	<!--<div class="grid-item" style="background-color: transparent;">
+		<ul style="list-style-type: none; padding-left: 0;">
+			<li class="welcomeItem"><img src="{% static 'home/images/logo.png' %}" height="40%" width="50%"></li>
+		</ul>
+		
+	</div> -->
+	<div class="grid-item" style="background-color: white; border-radius: 5px; box-shadow: 1px 1px 5px grey; ">
+		<h2 style="font-family: Lora; font-variant: small-caps; text-align: center;">Resist</h2>
+		<form method="POST" class="form-group"> {% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" name="Submit" class="btn btn-success" value="Log In" id="submitButton">
+			<p style="margin-top: 30px;">Don't have an account? <br> <a href="{% url 'register' %}">Create One Here</a></p>
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function goBack(){
+		window.history.back();
+	}
+</script>

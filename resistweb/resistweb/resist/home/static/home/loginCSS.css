@@ -1,0 +1,47 @@
+body{
+	background-color: rgb(246, 248, 251);
+	font-family: Arial;
+}
+
+#wrapper{
+	border-radius: 5px;
+	width: 400px;
+	height: 400px;
+	position: fixed;
+ 	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	display: grid;
+  	grid-template-columns: 100%;
+  
+}
+
+.grid-item{
+	padding: 20px;
+	font-size: 18px;
+	text-align: center;
+}
+
+#submitbutton{
+	background-image: linear-gradient(rgb(58, 62, 70), rgb(44, 48, 53));
+	color: white;
+	width: 80%;
+	height: 15%;
+	font-size: 18px;
+	border: none;
+	border-radius: 5px;
+	margin-top: 20px;
+}
+
+.welcomeItem h2, .welcomeItem img{
+	display: inline-block;
+}
+
+#pictureList{
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.picturelistItem{
+	display: inline;
+}

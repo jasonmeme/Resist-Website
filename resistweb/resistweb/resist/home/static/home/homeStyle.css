@@ -1,0 +1,133 @@
+body{
+	background-color: rgb(246, 248, 251);
+	font-family: "Arial";
+}
+header{
+	margin: 0;
+	padding: 0;
+}
+#whitebox{
+	background-color: white;
+	border-radius: 20px;
+	width: 700px;
+	height: 400px;
+	position: fixed;
+ 	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	display: grid;
+  	grid-template-columns: 50% 50%;
+ 
+}
+.grid-item{
+	padding: 20px;
+	font-size: 30px;
+	text-align: center;
+
+}
+#authenticate{
+	list-style-type: none;
+}
+#authenticate li{
+	padding: 20px;
+	background-color: black;
+	border-radius: 10px;
+	display: block;
+	width: 75%;
+	height: 90%;
+	margin-bottom: 20px;
+	text-decoration: none;
+	color: white;
+
+
+}
+#authenticate a{
+	text-decoration: none;
+	color: white;
+	font-size: 20px;
+}
+#mapid { height: 180px; }
+
+
+#navbar{
+	display: block;
+	background-color: black;
+	margin: 0;
+	padding: 0;
+	border-radius: 10px;
+}
+#navbar ul{
+	list-style-type: none;
+	padding-left: 0;
+}
+#navbarli{
+	display: inline-block;
+	padding: 15px;
+	color: white;
+	text-decoration: none;
+}
+
+#navbarli:first-child{
+	border-radius: 10px 0px 0px 10px;
+}
+
+#navbarli:last-child{
+	border-radius: 0px 10px 10px 0px;
+}
+
+#navbarli:hover{
+	background-color: rgb(40,41,35);
+}
+
+#navbarli a{
+	text-decoration: none;
+	color: white;
+}
+
+#wrapper{
+	display: grid;
+	margin-top: 70px;
+	margin-left: 3%;
+	grid-template-columns: 50% 50%;
+}
+
+#content{
+	margin-left: 2%;
+}
+
+.content{
+	margin-top: 70px;
+	margin-left: 0;
+}
+
+#submitbutton{
+	background-image: linear-gradient(rgb(58, 62, 70), rgb(44, 48, 53));
+	color: white;
+	width: 20%;
+	height: 40px;
+	font-size: 18px;
+	border: none;
+	margin-top: 20px;
+	border-radius: 5px;
+}
+
+#detailbutton{
+	background-image: linear-gradient(rgb(58, 62, 70), rgb(44, 48, 53));
+	color: white;
+	width: 92%;
+	height: 40px;
+	font-size: 18px;
+	border: none;
+	margin-top: 20px;
+	border-radius: 5px;
+}
+
+.formLabel{
+	margin-top: 2%;
+}
+
+.inputField{
+	margin-top: 2%;
+	border: none;
+	border-bottom: 1px solid black;
+}

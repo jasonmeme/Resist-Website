@@ -1,0 +1,35 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/homeStyle.css' %}">
+
+{% if user.is_authenticated %}
+	<div id="content" class="content" style="display: grid; grid-template-columns: 25% 75%;">
+		<div id="meta" class="grid">
+			<h1>{{ campaign.title }}</h1>
+			<h2>Number of Attendees: {{ campaign.attendees }}</h2>
+			<h3>Location: {{ campaign.location }}</h3>
+			<h4>Organizer: {{ campaign.organizer }}</h4>
+			<h4>Date: {{ campaign.date }}</h4>
+			{% if submitted %}
+				<p>You're signed up!</p>	
+			{% else %}
+				<form method="POST">{% csrf_token %}
+					{{ form|crispy }}
+					<input type="submit" name="attending" value="Submit" id="detailbutton">
+				</form>
+			{% endif %}	
+		</div>
+		<div id="description" class="grid">
+			<h3><span>Description: </span></h3>
+			<p>{{ campaign.description }}</p>
+			
+		</div>
+	</div>
+
+{% endif %}
+
+
+{% endblock %}

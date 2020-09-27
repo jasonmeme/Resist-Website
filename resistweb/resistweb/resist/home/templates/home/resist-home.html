@@ -1,0 +1,139 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/homeStyle.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'home/styles.css' %}">
+
+<!--{% if user.is_authenticated %}-->
+
+
+	<div id="wrapper" style="margin-left: 1%;">
+		<div id="map" style="width:100%;height:720px; margin-bottom: 3%;"></div>
+		<div id="content">
+			<h1 style="font-family: Lora; font-variant: small-caps; color: black;">Welcome, {{ user.first_name }} {{ user.last_name }}</h1>
+			<div id="campaignformcontainer" style="background-color: white; border-radius: 10px;">
+				<div id="campaignform" style="padding: 15px; background-color: white; border-radius: 5px; box-shadow: 1px 1px 5px; margin-right: 2%;">
+					<h3 style="margin-top: 0;">Start a Campaign</h3>
+					<form method="POST"> {% csrf_token %}
+						{{ form|crispy }}
+						<p><i>Before starting a campaign, make sure you have a protest permit.</i></p>
+						<input type="submit" name="submit" id="submitbutton" value="Submit">
+					</form>
+				</div>
+			</div>
+			<div id="nearbycontainer" style="background-color: white; border-radius: 5px; margin-top: 2%; box-shadow: 1px 1px 5px; margin-right: 2%; margin-bottom: 3%;">
+				<div id="nearbycampaigns" style="padding: 15px;">
+					<h3 style="margin-top: 0;">Campaigns Nearby</h3>
+					{% if data %}
+						<ul style="list-style-type: none; padding-left: 0;">
+							{% for campaign in data %}
+									<a href="{% url 'detail' campaign.id %}">
+										<li>
+											{{ campaign.title }} - {{ campaign.date }}, {{ campaign.location }}
+										</li>
+									</a>
+
+							{% endfor %}
+						</ul>
+					{% else %}
+						<p>No Campaigns Currently Available</p>
+					{% endif %}
+				</div>
+				
+			</div>
+			
+			
+		</div>
+	</div>
+	<script>
+		let map;
+
+		function initMap() {
+			map = new google.maps.Map(document.getElementById("map"), {
+			center: { lat: -34.397, lng: 150.644 },
+			zoom: 6
+			});
+			
+			
+			const myLatLng = { lat: 42.763620, lng: -71.466557};
+			const bosLatLng = {lat: 42.3601, lng: -71.0589};
+			const manLatLng = {lat: 42.9956, lng: -71.4548};
+			
+
+			new google.maps.Marker({
+			    position: myLatLng,
+			    map,
+			    title: "Save the Earth"
+			 });
+			new google.maps.Marker({
+			    position: bosLatLng,
+			    map,
+			    title: "BLM"
+			 });
+			new google.maps.Marker({
+			    position: manLatLng,
+			    map,
+			    title: "BLM"
+			 });
+
+
+	  	if (navigator.geolocation) {
+    		navigator.geolocation.getCurrentPosition(
+     		position => {
+				const pos = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				};
+			
+			
+			
+			map.setCenter(pos);
+			},
+			() => {
+			handleLocationError(true, infoWindow, map.getCenter());
+			}
+		);
+
+		} else {
+    	// Browser doesn't support Geolocation
+    		handleLocationError(false, infoWindow, map.getCenter());
+  		}
+	}
+
+		function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+			infoWindow.setPosition(pos);
+			infoWindow.setContent(browserHasGeolocation ?
+				'Error: The Geolocation service failed.' :
+				'Error: Your browser doesn\'t support geolocation.');
+			infoWindow.open(map);
+		}
+	
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl5miOL1wwlDhCWxtHKmJfjgz2rxmjMyA&callback=initMap"></script>
+
+
+<!--{% else %}
+
+<body>
+
+	<div id="whitebox">
+		<div class="grid-item">
+			<img src="{% static  'home/images/Background.jpg' %}" style="width:100%;height:100%;">
+		</div>
+		<div id="authenticatebox" class="grid-item">
+			<h2 style="font-family: Lora; font-variant: small-caps;">Assist</h2>
+			<ul id="authenticate">
+				<a href="{% url 'register' %}"><li>Sign Up</li></a>
+				<a href="{% url 'login' %}"><li>Login</li></a>
+			</ul>
+		</div>
+	</div>
+</body>
+
+{% endif %} -->
+
+{% endblock %}
+
